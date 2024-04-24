@@ -1,2 +1,2 @@
 # vidmusic-remover
-Removes music from videos using Demucs (Gui Wip and other platform usage)
+Removes music from videos using Demucs (Gui and other platform usage wip)
