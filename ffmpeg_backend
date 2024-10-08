@@ -37,7 +37,7 @@ def cont_extr (a_path, v_path, out_name, choice):
         os.system(rf"ffmpeg -hwaccel cuda -hwaccel_output_format cuda -i {v_path} -map 0:a {out_aud} -map 0:v {out_vid}")
 
 
-    pass
+    return out_vid
 
 
 def aud_rep(vid_path, aud_path, out_path):
