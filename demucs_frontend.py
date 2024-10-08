@@ -10,7 +10,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QMessageBox, QFileDialog
+from PyQt5.QtWidgets import QMessageBox, QFileDialog, QGridLayout, QSizePolicy
 import os
 import time
 
@@ -23,11 +23,14 @@ text_o = "This ai is that ai i these ais ar e those ais are one ai is one ai is 
 
 class Ui_mainWindow(object):
     def setupUi(self, mainWindow):
+
+
         mainWindow.setObjectName("mainWindow")
         mainWindow.resize(800, 600)
         mainWindow.setTabShape(QtWidgets.QTabWidget.Rounded)
         self.centralwidget = QtWidgets.QWidget(mainWindow)
         self.centralwidget.setObjectName("centralwidget")
+        
 
         self.browse_button = QtWidgets.QPushButton(self.centralwidget)
         self.browse_button.setGeometry(QtCore.QRect(130, 260, 181, 71))
@@ -61,17 +64,26 @@ class Ui_mainWindow(object):
         self.comboBox.addItem("")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
+
+        #Outut box
         self.outputbox = QtWidgets.QLineEdit(self.centralwidget)
         self.outputbox.setGeometry(QtCore.QRect(130, 190, 431, 20))
         self.outputbox.setText("")
         self.outputbox.setClearButtonEnabled(False)
         self.outputbox.setObjectName("outputbox")
+
+        # Inputbox
         self.inputbox = QtWidgets.QLineEdit(self.centralwidget)
         self.inputbox.setGeometry(QtCore.QRect(130, 150, 431, 20))
         self.inputbox.setText("")
         self.inputbox.setClearButtonEnabled(False)
         self.inputbox.setObjectName("inputbox")
+        self.inputbox.setReadOnly(True)
+
+
         mainWindow.setCentralWidget(self.centralwidget)
+
+        # ????
         self.statusbar = QtWidgets.QStatusBar(mainWindow)
         self.statusbar.setObjectName("statusbar")
         mainWindow.setStatusBar(self.statusbar)
@@ -79,7 +91,7 @@ class Ui_mainWindow(object):
         self.retranslateUi(mainWindow)
         QtCore.QMetaObject.connectSlotsByName(mainWindow)
 
-        # UI Functionalities
+        # UI Functionalities (mostly defunct)
 
         self.About_button.clicked.connect(self.about_page)  # About models page 
 
@@ -93,6 +105,9 @@ class Ui_mainWindow(object):
 
         self.submit_button.clicked.connect(self.submit) 
 
+    
+
+
 
     # Ui Functionalities definitions
 
@@ -100,7 +115,7 @@ class Ui_mainWindow(object):
 
     def vr2(self):
         
-        try: demucs.separate.main(["--mp3", "--two-stems", "vocals","-n", "mdx_extra_q", str(self.file_path), "-o", str(self.out_path) ])
+        try: demucs.separate.main(["--mp3", "--two-stems", "vocals", str(self.file_path) ,"-o", str(self.outputdir) ])
 
         except Exception as e: 
                 msg = QMessageBox()
@@ -112,6 +127,10 @@ class Ui_mainWindow(object):
 
     def submit(self):
         
+        self.outputdir = self.outputbox.text()
+
+        print(self.outputdir)
+
         msg = QMessageBox()
 
         msg.setWindowTitle("Warning")
@@ -124,7 +143,7 @@ class Ui_mainWindow(object):
         f_name = tuple_name[1]
         print(f_name)
 
-        if  self.checkBox.isChecked() and f_name in dir_cont:
+        if  self.checkBox.isChecked() and self.outputdir == self.out_path:
 
             msg.setText("There is already an existing file with the same name present, \n Are you sure you want to overwrite the existing file?")
 
@@ -142,18 +161,21 @@ class Ui_mainWindow(object):
             #temp
 
 
-        elif f_name in dir_cont:  # use os.split for this. 
+        elif self.outputdir == self.out_path:  # use os.split for this. 
             
             msg = QMessageBox()
 
             msg.setWindowTitle("Overwrite Error")
+            msg.setIcon(QMessageBox.Warning)
 
-            msg.setText("There is already a folder with the file name this name in this directory, unable to proceed. ")
+            msg.setText("There is already a folder with the same name in this directory, unable to proceed.")
 
             msg.setStandardButtons(QMessageBox.Ok)
             msg.setDefaultButton(QMessageBox.Ok)
 
-        if f_name not in dir_cont:
+            x = msg.exec_()
+
+        if self.outputdir != self.out_path:
 
             self.vr2()
 
@@ -162,7 +184,7 @@ class Ui_mainWindow(object):
 
         options = QFileDialog.Options()
         
-        self.file_path, _ = QFileDialog.getOpenFileName(None, "Select mp3 file", "", "Mp3 files (*.mp3)", options=options)
+        self.file_path, _ = QFileDialog.getOpenFileName(None, "Select audio file", "", "Mp3 files (*.mp3)", options=options)
         
         if self.file_path:
 
@@ -176,7 +198,7 @@ class Ui_mainWindow(object):
 
             input_dir = os.path.split(self.file_path)
 
-            output_Fname = f"CHANGED_{base_name}{ext}"
+            output_Fname = f"CHANGED_{base_name}"  # "{ext}"
 
             self.out_path = os.path.join(input_dir[0], output_Fname)
 
