@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/new/img_icons">
+        <file>resources/1366223205467097free-3d-glossy-interface-icons-save-md.png</file>
+        <file>resources/add.png</file>
+        <file>resources/authorize.png</file>
+        <file>resources/back.png</file>
+        <file>resources/clipboard.png</file>
+        <file>resources/clock.png</file>
+        <file>resources/close (1).png</file>
+        <file>resources/close.png</file>
+        <file>resources/configure.png</file>
+        <file>resources/copy.png</file>
+        <file>resources/directory_open_file_mydocs-4.png</file>
+        <file>resources/document.png</file>
+        <file>resources/document_storage.png</file>
+        <file>resources/file.png</file>
+        <file>resources/mail.png</file>
+        <file>resources/next.png</file>
+        <file>resources/recent_documents.png</file>
+    </qresource>
+</RCC>
