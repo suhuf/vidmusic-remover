@@ -1,5 +1,5 @@
 # vidmusic-remover
-Removes music from videos using Demucs (GUI Now complete).
+Removes music from videos using Demucs (GUI now complete).
 
 Why Demucs? 
 After testing multiple other AI Models and python libraries, only demucs was able to remove the music completely from a YT video that I specifically wanted music removed for.
