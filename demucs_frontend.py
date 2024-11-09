@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'C:\Users\seca\AppData\Local\Programs\Python\Python39\Lib\site-packages\qt5_applications\Qt\bin\demucs.ui'
+# Form implementation generated from reading ui file 'fakepath'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -18,7 +18,7 @@ import time
 import demucs.separate
 
 
-text_o = "This ai is that ai i these ais ar e those ais are one ai is one ai is not"
+text_o = "Placeholder"
 
 
 class Ui_mainWindow(object):
@@ -96,7 +96,6 @@ class Ui_mainWindow(object):
         self.About_button.clicked.connect(self.about_page)  # About models page 
 
         self.checkBox.clicked.connect(self.overwrite_checker) # Overwite check box
-
 
         self.comboBox.currentIndexChanged.connect(self.model_choice) # Models chooser
 
@@ -251,7 +250,7 @@ class Ui_mainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         mainWindow.setWindowTitle(_translate("mainWindow", "Music Remover"))
         
-        self.browse_button.setText(_translate("mainWindow", "Choose video file"))
+        self.browse_button.setText(_translate("mainWindow", "Choose .MP3 Audio file"))
         self.submit_button.setText(_translate("mainWindow", "Submit"))
 
         self.checkBox.setText(_translate("mainWindow", "Overwrite duplicate file (if present)"))
