@@ -8,7 +8,7 @@ Other audio separators that were tested had mixed results and none of them worke
 
 Works in progress:
 
-Working on instructions for installation on other devices, definetely requires Demucs & PYQT.
+Working on instructions for installation on other devices, definetely requires Demucs & PYQT if you want to run on your own system.
 
 Working on usage for other audio file formats, this is just a prototype/wip
 
