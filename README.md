@@ -12,6 +12,6 @@ Working on instructions for installation on other devices, definetely requires D
 
 Working on usage for other audio file formats, this is just a prototype/wip
 
-C++ version being developed with QT atm.
+Proper C++ version being developed with QT
 
 
